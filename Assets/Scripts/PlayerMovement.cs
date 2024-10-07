@@ -58,6 +58,7 @@ public class MovementScript : MonoBehaviour
     PlayerInput playerInput;
     InputAction moveAction;
     public float moveSpeed;
+    private Rigidbody rb;
 
     void Start()
     {
