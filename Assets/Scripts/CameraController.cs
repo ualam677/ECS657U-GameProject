@@ -10,6 +10,10 @@ public class CameraController : MonoBehaviour
     public float mouseSensitivity;
     public Transform pivot;
 
+    public float maxViewAngle;
+    public float minViewAngle;
+
+
     void Start()
     {
         offset = focalPoint.position - transform.position;
@@ -33,8 +37,17 @@ public class CameraController : MonoBehaviour
         float vertical = Input.GetAxis("Mouse Y") * mouseSensitivity;
         pivot.Rotate(-vertical, 0, 0);
 
+        // putting a limit on the pivot to prevent camera from flipping
+        if(pivot.rotation.eulerAngles.x > maxViewAngle && pivot.rotation.eulerAngles.x < 180f) {
+            pivot.rotation = Quaternion.Euler(maxViewAngle, 0, 0);
+        }
+
+        if(pivot.rotation.eulerAngles.x > 180f && pivot.rotation.eulerAngles.x < 360f + minViewAngle) {
+            pivot.rotation = Quaternion.Euler(360f + minViewAngle, 0, 0);
+        }
+
         // rotating camera to follow the players rotation
-        // converting player roation into quaternion angle to resposition the camera
+        // converting player rotation into quaternion angle to resposition the camera
         float cameraAdjustY = focalPoint.eulerAngles.y;
         float cameraAdjustX = pivot.eulerAngles.x;
         Quaternion rotation = Quaternion.Euler(cameraAdjustX, cameraAdjustY, 0);
