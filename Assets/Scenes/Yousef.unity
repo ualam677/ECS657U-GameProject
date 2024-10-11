@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 1154813415}
   - component: {fileID: 1154813414}
   - component: {fileID: 1154813413}
+  - component: {fileID: 1154813416}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -509,13 +510,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154813412}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.051675703, y: -0, z: -0, w: 0.9986639}
-  m_LocalPosition: {x: 0, y: 2.7, z: -9.02}
+  m_LocalRotation: {x: 0.077140205, y: -0, z: -0, w: 0.9970203}
+  m_LocalPosition: {x: 0, y: 3.14, z: -6.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1678459229}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 5.924, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.848, y: 0, z: 0}
+--- !u!114 &1154813416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154813412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49fcb1b157aa60489410d0e72b5bb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focalPoint: {fileID: 1516643811}
+  offset: {x: 0, y: 0, z: 0}
+  mouseSensitivity: 1
+  pivot: {fileID: 1678459229}
+  maxViewAngle: 65
+  minViewAngle: -50
 --- !u!1 &1507146750
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,10 +762,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd99db2f549e5c147a43bae9020d9b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 0
+  sprintSpeed: 10
+  walkSpeed: 5
   jumpForce: 5.5
-  controller: {fileID: 0}
   gravityMultiplier: 1.4
+  controller: {fileID: 0}
 --- !u!143 &1516643813
 CharacterController:
   m_ObjectHideFlags: 0
@@ -816,6 +838,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1678459228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678459229}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678459229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678459228}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.077140205, y: -0, z: -0, w: 0.9970203}
+  m_LocalPosition: {x: 0.07583618, y: -2.155065, z: 7.268005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1154813415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743276667
 GameObject:
