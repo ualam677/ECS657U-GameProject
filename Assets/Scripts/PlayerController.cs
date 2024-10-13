@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // void OnMove(InputValue value) {
-    //     moveInput = value.Get<Vector2>();
-    // }
+    void OnMove(InputValue value) {
+        moveInput = value.Get<Vector2>();
+    }
 
     void MovePlayer()
     {       
@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         float yStore = moveDirection.y;
 
         // using the mouse to move the player in chosen directions
-        moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        // moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
+        // moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
         moveDirection = moveDirection.normalized * moveSpeed;
         moveDirection.y = yStore;
 
@@ -86,6 +86,9 @@ public class PlayerController : MonoBehaviour
         // prevents movement from scaling off of frame rate
         controller.Move(moveDirection * Time.deltaTime);
     }
+
+
+    // void OnJump
 
 
     void Update()
