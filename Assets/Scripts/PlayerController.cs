@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float gravityMultiplier;
 
-    public CharacterController controller;
+    CharacterController controller;
     private Vector3 moveDirection;
+    public Vector2 moveInput;
 
     
 
@@ -31,6 +32,11 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         moveSpeed = walkSpeed;
     }
+
+
+    // void OnMove(InputValue value) {
+    //     moveInput = value.Get<Vector2>();
+    // }
 
     void MovePlayer()
     {       
@@ -51,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         // using the mouse to move the player in chosen directions
         moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        // moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
         moveDirection = moveDirection.normalized * moveSpeed;
         moveDirection.y = yStore;
 
@@ -58,12 +65,14 @@ public class PlayerController : MonoBehaviour
         if(controller.isGrounded) {
             moveDirection.y = 0f;
 
-            if(Input.GetButtonDown("Jump")) {
+            // if(Input.GetButtonDown("Jump")) {
+            if(Keyboard.current.spaceKey.wasPressedThisFrame) {
                 moveDirection.y = jumpForce; 
             }
 
             // sprint button
-            if(Input.GetButton("Fire3")) {
+            // if(Input.GetButton("Fire3")) {
+            if(Keyboard.current.leftShiftKey.isPressed) {
                     moveSpeed = sprintSpeed;
                 }
             else {
