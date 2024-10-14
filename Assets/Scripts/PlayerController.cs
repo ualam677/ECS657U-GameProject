@@ -38,6 +38,45 @@ public class PlayerController : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
+    void OnJump(InputValue value)
+    {
+        if (controller.isGrounded)
+        {
+            if(value.isPressed)
+            {
+                moveDirection.y = jumpForce;
+            }
+            else
+            {
+                 moveDirection.y = 0f;
+            }
+        }
+    }
+
+    //void OnSprint(InputValue value)
+    //{
+    //    //if(controller.isGrounded)
+    //    {
+    //        if(value != null)
+    //        {
+    //            moveSpeed = sprintSpeed;
+    //        }
+    //        else
+    //        {
+    //            moveSpeed = walkSpeed;
+    //        }
+    //    }
+    //}
+
+
+    void baseSpeed()
+    {
+        if (moveSpeed == sprintSpeed)
+        {
+            moveSpeed = walkSpeed;
+        }
+    }
+
     void MovePlayer()
     {       
         // using rigid body
@@ -62,20 +101,24 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = yStore;
 
         // preventing infinite jumps
-        if(controller.isGrounded) {
-            moveDirection.y = 0f;
+        if (controller.isGrounded)
+        {
+            //moveDirection.y = 0f;
 
             // if(Input.GetButtonDown("Jump")) {
-            if(Keyboard.current.spaceKey.wasPressedThisFrame) {
-                moveDirection.y = jumpForce; 
-            }
+            //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            //{
+            //    moveDirection.y = jumpForce;
+            //}
 
             // sprint button
             // if(Input.GetButton("Fire3")) {
-            if(Keyboard.current.leftShiftKey.isPressed) {
-                    moveSpeed = sprintSpeed;
-                }
-            else {
+            if (Keyboard.current.leftShiftKey.isPressed)
+            {
+                moveSpeed = sprintSpeed;
+            }
+            else
+            {
                 moveSpeed = walkSpeed;
             }
         }

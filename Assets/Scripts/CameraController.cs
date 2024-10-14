@@ -14,10 +14,11 @@ public class CameraController : MonoBehaviour
     public float maxViewAngle;
     public float minViewAngle;
 
-    Vector2 lookInput;
+    public Vector2 lookInput;
 
 
-    void OnLook(InputValue value) {
+    void OnLook(InputValue value)
+    {
         lookInput = value.Get<Vector2>();
     }
 
@@ -38,13 +39,13 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         // get mouseX position and rotate player on its Y-axis based on the value to move horizontaly
-        float horizontal = Input.GetAxis("Mouse X") * mouseSensitivity;
-        // float horizontal = lookInput.x * mouseSensitivity;
+        //float horizontal = Input.GetAxis("Mouse X") * mouseSensitivity;
+         float horizontal = lookInput.x * mouseSensitivity;
         focalPoint.Rotate(0, horizontal, 0);
 
         // get mouseY position and rotate pivot (prevent player from rotating verticaly) on its X-axis based on the value to move verticaly
-        float vertical = Input.GetAxis("Mouse Y") * mouseSensitivity;
-        // float vertical = lookInput.y * mouseSensitivity;
+        //float vertical = Input.GetAxis("Mouse Y") * mouseSensitivity;
+         float vertical = lookInput.y * mouseSensitivity;
         pivot.Rotate(-vertical, 0, 0);
 
         // putting a limit on the pivot to prevent camera from flipping
