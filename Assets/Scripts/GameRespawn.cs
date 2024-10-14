@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameRespawn : MonoBehaviour
 {
-    public Vector3 respawnPoint;  // player respawn position
+    public Vector3 respawnPoint;  // player respawn point
     public float threshold;  // death boundary
 
     private void Start()
     {
-        // Set respawn point
+        // set respawn point
         respawnPoint = transform.position;
     }
 
