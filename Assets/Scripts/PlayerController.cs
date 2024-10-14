@@ -34,9 +34,48 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // void OnMove(InputValue value) {
-    //     moveInput = value.Get<Vector2>();
-    // }
+    void OnMove(InputValue value) {
+        moveInput = value.Get<Vector2>();
+    }
+
+    void OnJump(InputValue value)
+    {
+        if (controller.isGrounded)
+        {
+            if(value.isPressed)
+            {
+                moveDirection.y = jumpForce;
+            }
+            else
+            {
+                 moveDirection.y = 0f;
+            }
+        }
+    }
+
+    //void OnSprint(InputValue value)
+    //{
+    //    //if(controller.isGrounded)
+    //    {
+    //        if(value != null)
+    //        {
+    //            moveSpeed = sprintSpeed;
+    //        }
+    //        else
+    //        {
+    //            moveSpeed = walkSpeed;
+    //        }
+    //    }
+    //}
+
+
+    void baseSpeed()
+    {
+        if (moveSpeed == sprintSpeed)
+        {
+            moveSpeed = walkSpeed;
+        }
+    }
 
     void MovePlayer()
     {       
@@ -56,26 +95,30 @@ public class PlayerController : MonoBehaviour
         float yStore = moveDirection.y;
 
         // using the mouse to move the player in chosen directions
-        moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        // moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
+        // moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
         moveDirection = moveDirection.normalized * moveSpeed;
         moveDirection.y = yStore;
 
         // preventing infinite jumps
-        if(controller.isGrounded) {
-            moveDirection.y = 0f;
+        if (controller.isGrounded)
+        {
+            //moveDirection.y = 0f;
 
             // if(Input.GetButtonDown("Jump")) {
-            if(Keyboard.current.spaceKey.wasPressedThisFrame) {
-                moveDirection.y = jumpForce; 
-            }
+            //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            //{
+            //    moveDirection.y = jumpForce;
+            //}
 
             // sprint button
             // if(Input.GetButton("Fire3")) {
-            if(Keyboard.current.leftShiftKey.isPressed) {
-                    moveSpeed = sprintSpeed;
-                }
-            else {
+            if (Keyboard.current.leftShiftKey.isPressed)
+            {
+                moveSpeed = sprintSpeed;
+            }
+            else
+            {
                 moveSpeed = walkSpeed;
             }
         }
@@ -86,6 +129,9 @@ public class PlayerController : MonoBehaviour
         // prevents movement from scaling off of frame rate
         controller.Move(moveDirection * Time.deltaTime);
     }
+
+
+    // void OnJump
 
 
     void Update()
