@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
     // PlayerInput playerInput;
     // InputAction moveAction;
     // private Rigidbody rb;
+
+    // speed variables
     public float moveSpeed;
     public float sprintSpeed;
     public float walkSpeed;
+    private bool isSprinting = false;
 
+    // jump variables 
     public float jumpForce;
     public float gravityMultiplier;
 
-    CharacterController controller;
+    // movement variables
     private Vector3 moveDirection;
     public Vector2 moveInput;
 
-    
+    CharacterController controller;
+
 
  
 
@@ -33,11 +39,12 @@ public class PlayerController : MonoBehaviour
         moveSpeed = walkSpeed;
     }
 
-
+    // Moving function which reads the value of the direction moving in on button press
     void OnMove(InputValue value) {
         moveInput = value.Get<Vector2>();
     }
 
+    // Jump function which reads when jump button is pressed, applies jump when player is grounded
     void OnJump(InputValue value)
     {
         if (controller.isGrounded)
@@ -48,34 +55,26 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                 moveDirection.y = 0f;
+                moveDirection.y = 0f;
             }
         }
     }
 
-    //void OnSprint(InputValue value)
-    //{
-    //    //if(controller.isGrounded)
-    //    {
-    //        if(value != null)
-    //        {
-    //            moveSpeed = sprintSpeed;
-    //        }
-    //        else
-    //        {
-    //            moveSpeed = walkSpeed;
-    //        }
-    //    }
-    //}
-
-
-    void baseSpeed()
-    {
-        if (moveSpeed == sprintSpeed)
-        {
-            moveSpeed = walkSpeed;
-        }
+    // Sprint function sets the sprinting state to true when button is pressed and false when released
+    void OnSprint(InputValue value) {
+            if(value.isPressed) {
+                Debug.Log("pressed: " + value);
+                // moveSpeed = sprintSpeed;
+                isSprinting = true;
+            }
+            else {
+                Debug.Log("released: " + value);
+                // moveSpeed = walkSpeed;
+                isSprinting = false;
+            }
     }
+
+
 
     void MovePlayer()
     {       
@@ -100,25 +99,43 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveDirection.normalized * moveSpeed;
         moveDirection.y = yStore;
 
-        // preventing infinite jumps
-        if (controller.isGrounded)
-        {
-            //moveDirection.y = 0f;
+        // // preventing infinite jumps
+        // if (controller.isGrounded)
+        // {
+        //     //moveDirection.y = 0f;
 
-            // if(Input.GetButtonDown("Jump")) {
-            //if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            //{
-            //    moveDirection.y = jumpForce;
-            //}
+        //     // if(Input.GetButtonDown("Jump")) {
+        //     //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //     //{
+        //     //    moveDirection.y = jumpForce;
+        //     //}
 
-            // sprint button
-            // if(Input.GetButton("Fire3")) {
-            if (Keyboard.current.leftShiftKey.isPressed)
-            {
+        //     // sprint button
+        //     // if(Input.GetButton("Fire3")) {
+        //     if (Keyboard.current.leftShiftKey.isPressed)
+        //     {
+        //         moveSpeed = sprintSpeed;
+        //     }
+        //     else
+        //     {
+        //         moveSpeed = walkSpeed;
+        //     }
+        // }
+
+        // if(isSprinting) {
+        //     moveSpeed = sprintSpeed;
+        //     Debug.Log("pressed: " + isSprinting);
+        // }
+        // else {
+        //     moveSpeed = walkSpeed;
+        //     Debug.Log("not pressed: " + isSprinting);
+        // }
+
+        if(controller.isGrounded) {
+            if(isSprinting) {
                 moveSpeed = sprintSpeed;
             }
-            else
-            {
+            else {
                 moveSpeed = walkSpeed;
             }
         }
@@ -129,9 +146,6 @@ public class PlayerController : MonoBehaviour
         // prevents movement from scaling off of frame rate
         controller.Move(moveDirection * Time.deltaTime);
     }
-
-
-    // void OnJump
 
 
     void Update()
