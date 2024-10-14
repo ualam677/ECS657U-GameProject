@@ -6,16 +6,24 @@ public class EnemyJumpDeath : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        // Check if the object colliding with the enemy's top is the player
         if (other.CompareTag("Player"))
         {
-            Die();
-        }
-    }
+            // Npte: Used raycasting because player is kinematic. Dosen't rely on physics like velocity to determine if the player is directly above the enemy
 
-    void Die()
-    {
-        // Perform any death animation, sound effects, etc. here
-        Destroy(gameObject);  // Destroy the enemy object
+            // Cast a ray from the player's position downwards
+            RaycastHit hit;
+            Vector3 rayOrigin = other.transform.position;
+            Vector3 rayDirection = Vector3.down;
+
+            if (Physics.Raycast(rayOrigin, rayDirection, out hit, Mathf.Infinity))
+            {
+                // Check if the ray hit this enemy object
+                if (hit.collider.gameObject == gameObject)
+                {
+                    // Destroy the enemy if the ray hits it from above
+                    Destroy(gameObject);
+                }
+            }
+        }
     }
 }
