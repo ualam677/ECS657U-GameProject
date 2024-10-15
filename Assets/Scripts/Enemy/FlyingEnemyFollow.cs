@@ -22,9 +22,14 @@ public class FlyingEnemyFollow : MonoBehaviour
         // Move towards the player using NavMesh (X and Z axis only)
         flyingEnemy.SetDestination(player.position);
 
-        // Manually control the Y position to simulate hovering
-        Vector3 pos = transform.position;
-        pos.y = pos.y + hoverHeight;
-        transform.position = pos;
+        // Use a Raycast to determine the current ground height below the enemy
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            // Set the Y position to hoverHeight above the ground
+            Vector3 pos = transform.position;
+            pos.y = hit.point.y + hoverHeight;
+            transform.position = pos;
+        }
     }
 }
