@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     // jump variables 
     public float jumpForce;
     public float gravityMultiplier;
+    public bool isWallJump = false;
+
+    public float knockBackForce = 5f;
+    public float knockBackTime = 0.5f;
+    private float knockBackCounter;
+    
 
     // movement variables
     private Vector3 moveDirection;
@@ -45,6 +51,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Jump function which reads when jump button is pressed, applies jump when player is grounded
+    // Handles wall jumps
     void OnJump(InputValue value)
     {
         if (controller.isGrounded)
@@ -52,10 +59,18 @@ public class PlayerController : MonoBehaviour
             if(value.isPressed)
             {
                 moveDirection.y = jumpForce;
+                isWallJump = false;
             }
             else
             {
                 moveDirection.y = 0f;
+            }
+        }
+        if(isWallJump) {
+            if(value.isPressed && moveDirection.x != 0)
+            {
+                Knockback(new Vector3((moveDirection.x/2)*-1, 2f, 0f));
+                isWallJump = false;
             }
         }
     }
@@ -63,13 +78,11 @@ public class PlayerController : MonoBehaviour
     // Sprint function sets the sprinting state to true when button is pressed and false when released
     void OnSprint(InputValue value) {
             if(value.isPressed) {
-                Debug.Log("pressed: " + value);
-                // moveSpeed = sprintSpeed;
+                // Debug.Log("pressed: " + value);
                 isSprinting = true;
             }
             else {
-                Debug.Log("released: " + value);
-                // moveSpeed = walkSpeed;
+                // Debug.Log("released: " + value);
                 isSprinting = false;
             }
     }
@@ -90,54 +103,52 @@ public class PlayerController : MonoBehaviour
 
         // moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);
 
-        // stores the y position of the player before calculating the movement of player with mouse in order allow jumps
-        float yStore = moveDirection.y;
 
-        // using the mouse to move the player in chosen directions
-        // moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
-        moveDirection = moveDirection.normalized * moveSpeed;
-        moveDirection.y = yStore;
+        if(knockBackCounter <= 0 ) 
+        {
+            // stores the y position of the player before calculating the movement of player with mouse in order allow jumps
+            float yStore = moveDirection.y;
 
-        // // preventing infinite jumps
-        // if (controller.isGrounded)
-        // {
-        //     //moveDirection.y = 0f;
+            // using the mouse to move the player in chosen directions
+            // moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+            moveDirection = (transform.forward * moveInput.y) + (transform.right * moveInput.x);
+            moveDirection = moveDirection.normalized * moveSpeed;
+            moveDirection.y = yStore;
 
-        //     // if(Input.GetButtonDown("Jump")) {
-        //     //if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        //     //{
-        //     //    moveDirection.y = jumpForce;
-        //     //}
+            // // preventing infinite jumps
+            // if (controller.isGrounded)
+            // {
+            //     //moveDirection.y = 0f;
 
-        //     // sprint button
-        //     // if(Input.GetButton("Fire3")) {
-        //     if (Keyboard.current.leftShiftKey.isPressed)
-        //     {
-        //         moveSpeed = sprintSpeed;
-        //     }
-        //     else
-        //     {
-        //         moveSpeed = walkSpeed;
-        //     }
-        // }
+            //     // if(Input.GetButtonDown("Jump")) {
+            //     //if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            //     //{
+            //     //    moveDirection.y = jumpForce;
+            //     //}
 
-        // if(isSprinting) {
-        //     moveSpeed = sprintSpeed;
-        //     Debug.Log("pressed: " + isSprinting);
-        // }
-        // else {
-        //     moveSpeed = walkSpeed;
-        //     Debug.Log("not pressed: " + isSprinting);
-        // }
+            //     // sprint button
+            //     // if(Input.GetButton("Fire3")) {
+            //     if (Keyboard.current.leftShiftKey.isPressed)
+            //     {
+            //         moveSpeed = sprintSpeed;
+            //     }
+            //     else
+            //     {
+            //         moveSpeed = walkSpeed;
+            //     }
+            // }
 
-        if(controller.isGrounded) {
-            if(isSprinting) {
-                moveSpeed = sprintSpeed;
+            if(controller.isGrounded) {
+                if(isSprinting) {
+                    moveSpeed = sprintSpeed;
+                }
+                else {
+                    moveSpeed = walkSpeed;
+                }
             }
-            else {
-                moveSpeed = walkSpeed;
-            }
+        } else 
+        {
+            knockBackCounter -= Time.deltaTime;
         }
 
         // adding gravity to player
@@ -147,9 +158,27 @@ public class PlayerController : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
     }
 
+    // Allows wall jumps to be done when touching an object with the WallJump tag
+    void OnControllerColliderHit(ControllerColliderHit other) {
+        if(other.gameObject.tag == "WallJump")
+        {
+            // Debug.Log("hit something");
+            isWallJump = true;
+        }
+        else {
+            isWallJump = false;
+        }
+    }
+
+    public void Knockback(Vector3 direction) {
+        knockBackCounter = knockBackTime;
+        moveDirection = direction * knockBackForce;
+    }
 
     void Update()
     {
         MovePlayer();
     }
+
+
 }
