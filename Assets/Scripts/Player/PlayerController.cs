@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     
 
     // movement variables
-    private Vector3 moveDirection;
+    public Vector3 moveDirection;
     public Vector2 moveInput;
 
     CharacterController controller;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         if(isWallJump) {
             if(value.isPressed && moveDirection.x != 0)
             {
-                Knockback(new Vector3((moveDirection.x/2)*-1, 2f, 0f));
+                Knockback(new Vector3((moveDirection.x/2)*-1, 2f, (moveDirection.z/2)*-1));
                 isWallJump = false;
             }
         }
