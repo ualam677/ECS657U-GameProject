@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting = false;
 
     // jump variables 
-    public float jumpForce;
-    public float gravityMultiplier;
-    public bool isWallJump = false;
+    public float jumpForce = 8f;
+    public float gravityMultiplier = 1.4f;
+    private bool isWallJump = false;
 
     public float knockBackForce = 5f;
     public float knockBackTime = 0.5f;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     
 
     // movement variables
-    public Vector3 moveDirection;
+    private Vector3 moveDirection;
     public Vector2 moveInput;
 
     CharacterController controller;
@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
                 moveDirection.y = 0f;
             }
         }
-        if(isWallJump) {
+        // checks if gravity is acting to prevent heavily delaying walljump
+        if(isWallJump && moveDirection.y > 0) {
             if(value.isPressed && moveDirection.x != 0)
             {
                 Knockback(new Vector3((moveDirection.x/2)*-1, 2f, (moveDirection.z/2)*-1));
