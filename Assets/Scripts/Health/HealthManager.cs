@@ -9,15 +9,20 @@ public class HealthManager : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
+    public PlayerController thePlayer;
+
     // Setting up health and linking it to the healthbar
     void Start() {
         currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
+        thePlayer = FindAnyObjectByType<PlayerController>();
     }
 
     // Damages the player reflects on the healthbar
-    public void damagePlayer(int damage) {
+    public void damagePlayer(int damage, Vector3 direction) {
         currentHealth -= damage;
+        
+        thePlayer.Knockback(direction);
         
         if(currentHealth <= 0) {
             currentHealth = 0;

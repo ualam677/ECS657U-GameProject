@@ -20,14 +20,17 @@ public class DamagePlayer : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision other)
     {
-        if (collision.collider.CompareTag("Player") && Time.time >= nextDamageTime)
+        if (other.collider.CompareTag("Player") && Time.time >= nextDamageTime)
         {
+            Vector3 hitDirection = other.transform.position - transform.position;
+            hitDirection = hitDirection.normalized;
+
             HealthManager playerHealth = FindAnyObjectByType<HealthManager>();
             if (playerHealth != null)
             {
-                playerHealth.damagePlayer(damageAmount);
+                playerHealth.damagePlayer(damageAmount, hitDirection);
                 nextDamageTime = Time.time + damageCooldown; // Set the next time the enemy can deal damage
             }
         }
