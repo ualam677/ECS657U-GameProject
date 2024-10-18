@@ -10,21 +10,22 @@ public class GameManager : MonoBehaviour
     public HealthManager healthManager;
     public GameObject mainCamera;
     public GameObject gameOverPanel;
-    public PlayerInventory playerInventory;
-    // public Button restartButton;
-    // public TextMeshProUGUI gameOverText; 
+    //public PlayerInventory playerInventory;
+    public Button restartButton;
+    public Button mainMenuButton;
+    public TextMeshProUGUI gameOverText; 
 
     void Start() 
     {
         gameOverPanel = GameObject.Find("GameOverPanel");
         healthManager = FindAnyObjectByType<HealthManager>();
-        playerInventory = FindAnyObjectByType<PlayerInventory>();
+        //playerInventory = FindAnyObjectByType<PlayerInventory>();
 
         // Hide Game Over panel initially
         gameOverPanel.SetActive(false);
-        // gameOverText.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
 
-        // healthManager = FindAnyObjectByType<HealthManager>();
+        healthManager = FindAnyObjectByType<HealthManager>();
         mainCamera = Camera.main.gameObject;
     }
 
@@ -34,22 +35,22 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if (playerInventory.NumberOfTreasure == 1) {
-            SceneManager.LoadScene("Level2");
-        }
+        // if (playerInventory.NumberOfTreasure == 1) {
+        //     SceneManager.LoadScene("Level2");
+        // }
 
-        // Prototype finish screen 
-        if (playerInventory.NumberOfTreasure == 2)
-        {
-            // SceneManager.LoadScene("name of: win screen scene");
-        }
+        // // Prototype finish screen 
+        // if (playerInventory.NumberOfTreasure == 2)
+        // {
+        //     // SceneManager.LoadScene("MainMenuScreen");
+        // }
     }
 
     void GameOver() 
     {
         // Display Game Over panel
         gameOverPanel.SetActive(true);
-        // gameOverText.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
         Time.timeScale = 0f; // Pause the game
 
         Cursor.lockState = CursorLockMode.None;
@@ -64,7 +65,13 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame() 
     {
-        // Reload the current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Restart game from level 1
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void MainMenu() 
+    {
+        // Restart game from level 1
+        SceneManager.LoadScene("MainMenuScreen");
     }
 }
