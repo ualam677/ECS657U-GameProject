@@ -10,16 +10,21 @@ public class GameManager : MonoBehaviour
     public HealthManager healthManager;
     public GameObject mainCamera;
     public GameObject gameOverPanel;
-    public Button restartButton;
-    public TextMeshProUGUI gameOverText; 
+    public PlayerInventory playerInventory;
+    // public Button restartButton;
+    // public TextMeshProUGUI gameOverText; 
 
     void Start() 
     {
+        gameOverPanel = GameObject.Find("GameOverPanel");
+        healthManager = FindAnyObjectByType<HealthManager>();
+        playerInventory = FindAnyObjectByType<PlayerInventory>();
+
         // Hide Game Over panel initially
         gameOverPanel.SetActive(false);
-        gameOverText.gameObject.SetActive(false);
+        // gameOverText.gameObject.SetActive(false);
 
-        healthManager = FindAnyObjectByType<HealthManager>();
+        // healthManager = FindAnyObjectByType<HealthManager>();
         mainCamera = Camera.main.gameObject;
     }
 
@@ -28,13 +33,23 @@ public class GameManager : MonoBehaviour
         if (healthManager.currentHealth <= 0) {
             GameOver();
         }
+
+        if (playerInventory.NumberOfTreasure == 1) {
+            SceneManager.LoadScene("Level2");
+        }
+
+        // Prototype finish screen 
+        if (playerInventory.NumberOfTreasure == 2)
+        {
+            // SceneManager.LoadScene("name of: win screen scene");
+        }
     }
 
     void GameOver() 
     {
         // Display Game Over panel
         gameOverPanel.SetActive(true);
-        gameOverText.gameObject.SetActive(true);
+        // gameOverText.gameObject.SetActive(true);
         Time.timeScale = 0f; // Pause the game
 
         Cursor.lockState = CursorLockMode.None;

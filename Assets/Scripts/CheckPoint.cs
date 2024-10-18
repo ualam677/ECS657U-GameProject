@@ -6,7 +6,12 @@ public class CheckPoint : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameRespawn gameRespawn;
-    [SerializeField] List<GameObject> checkPoints; 
+    [SerializeField] List<GameObject> checkPoints;
+
+    void Start() {
+        // player = FindAnyObjectByType<PlayerController>();
+        player = GameObject.Find("Player");
+    }
 
     private void OnTriggerEnter(Collider other)
     {

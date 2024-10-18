@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 8f;
     public float gravityMultiplier = 1.4f;
     private bool isWallJump = false;
+    private float wallStore;
 
     public float knockBackForce = 5f;
     public float knockBackTime = 0.5f;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     public Vector2 moveInput;
 
-    CharacterController controller;
+    public CharacterController controller;
 
 
  
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour
     // Moving function which reads the value of the direction moving in on button press
     void OnMove(InputValue value) {
         moveInput = value.Get<Vector2>();
+
+        if(controller.isGrounded) {
+            moveDirection.y = 0;
+        }
     }
 
     // Jump function which reads when jump button is pressed, applies jump when player is grounded
@@ -68,7 +73,8 @@ public class PlayerController : MonoBehaviour
         }
         // checks if gravity is acting to prevent heavily delaying walljump
         if(isWallJump && moveDirection.y > 0) {
-            if(value.isPressed && moveDirection.x != 0)
+            moveDirection.y = 0;
+            if(value.isPressed && moveInput.x == wallStore)
             {
                 Knockback(new Vector3((moveDirection.x/2)*-1, 2f, (moveDirection.z/2)*-1));
                 isWallJump = false;
@@ -147,7 +153,8 @@ public class PlayerController : MonoBehaviour
                     moveSpeed = walkSpeed;
                 }
             }
-        } else 
+        } 
+        else 
         {
             knockBackCounter -= Time.deltaTime;
         }
@@ -165,9 +172,11 @@ public class PlayerController : MonoBehaviour
         {
             // Debug.Log("hit something");
             isWallJump = true;
+            wallStore = moveInput.x;
         }
         else {
             isWallJump = false;
+            wallStore = 0;
         }
     }
 

@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     public Transform focalPoint;
     public Vector3 offset;
-    public float mouseSensitivity;
+    public float mouseSensitivity = 0.04f;
     public Transform pivot;
 
     public float maxViewAngle;

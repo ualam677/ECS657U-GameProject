@@ -6,11 +6,13 @@ public class GameRespawn : MonoBehaviour
 {
     public Vector3 respawnPoint;  // player respawn point
     public float threshold;  // death boundary
+    private HealthManager health;
 
     private void Start()
     {
         // set respawn point
         respawnPoint = transform.position;
+        health = FindAnyObjectByType<HealthManager>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class GameRespawn : MonoBehaviour
         {
             Debug.Log("Player fell below threshold! Respawning at: " + respawnPoint);
             transform.position = respawnPoint;
+            health.damagePlayer(2, new Vector3(0f,0f,0f));
         }
     }
 

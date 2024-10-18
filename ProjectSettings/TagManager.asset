@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CheckPoint
   - WallJump
+  - Enemy
   layers:
   - Default
   - TransparentFX

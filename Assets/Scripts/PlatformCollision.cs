@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformCollision : MonoBehaviour
 {
-    [SerializeField] string playerTag = "Player";
+    private string playerTag = "Player";
     [SerializeField] Transform platform;
     // Start is called before the first frame update
 
@@ -13,6 +13,7 @@ public class PlatformCollision : MonoBehaviour
         if (other.gameObject.tag.Equals(playerTag))
         {
             other.gameObject.transform.parent = platform;
+            
         }
     }
 

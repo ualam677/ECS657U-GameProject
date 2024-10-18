@@ -7,11 +7,12 @@ public class DamagePlayer : MonoBehaviour
     public int damageAmount = 1;
     public float damageCooldown = 1.5f; // Cooldown in seconds
     private float nextDamageTime = 0f;
+    public PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindAnyObjectByType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class DamagePlayer : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.damagePlayer(damageAmount, hitDirection);
-                nextDamageTime = Time.time + damageCooldown; // Set the next time the enemy can deal damage
+                // nextDamageTime = Time.time + damageCooldown; // Set the next time the enemy can deal damage
             }
         }
     }

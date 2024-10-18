@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int NumberOfTreasure { get; private set; }
+    public int NumberOfTreasure;
 
     public void TreasureCollected()
     {
