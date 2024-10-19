@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3055,7 +3055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focalPoint: {fileID: 1141812079}
   offset: {x: 0, y: 0, z: 0}
-  mouseSensitivity: 0.04
+  mouseSensitivity: 0.4
   pivot: {fileID: 1489942463}
   maxViewAngle: 65
   minViewAngle: -50
@@ -3078,7 +3078,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.06829473, g: 0.0521983, b: 0.6509434, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.39215687, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3819,7 +3819,7 @@ Transform:
   m_GameObject: {fileID: 785422371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.024434328, y: 1.1654255, z: -14.271666}
+  m_LocalPosition: {x: -0.024434328, y: 0.25, z: -14.271666}
   m_LocalScale: {x: 16.403778, y: 20.685026, z: 20.07217}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8588,6 +8588,7 @@ MonoBehaviour:
   healthManager: {fileID: 1575479057}
   mainCamera: {fileID: 611918821}
   gameOverPanel: {fileID: 1267444877}
+  playerInventory: {fileID: 1141812080}
   restartButton: {fileID: 135552082}
   mainMenuButton: {fileID: 1453549090}
   gameOverText: {fileID: 993282932}

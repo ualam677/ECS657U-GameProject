@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public HealthManager healthManager;
     public GameObject mainCamera;
     public GameObject gameOverPanel;
-    //public PlayerInventory playerInventory;
+    public PlayerInventory playerInventory;
     public Button restartButton;
     public Button mainMenuButton;
     public TextMeshProUGUI gameOverText; 
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverPanel = GameObject.Find("GameOverPanel");
         healthManager = FindAnyObjectByType<HealthManager>();
-        //playerInventory = FindAnyObjectByType<PlayerInventory>();
+        playerInventory = FindAnyObjectByType<PlayerInventory>();
 
         // Hide Game Over panel initially
         gameOverPanel.SetActive(false);
@@ -35,15 +35,15 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        // if (playerInventory.NumberOfTreasure == 1) {
-        //     SceneManager.LoadScene("Level2");
-        // }
+        if (playerInventory.NumberOfTreasure == 1) {
+            SceneManager.LoadScene("Level2");
+        }
 
-        // // Prototype finish screen 
-        // if (playerInventory.NumberOfTreasure == 2)
-        // {
-        //     // SceneManager.LoadScene("MainMenuScreen");
-        // }
+        // Prototype finish screen 
+        if (playerInventory.NumberOfTreasure == 2)
+        {
+            SceneManager.LoadScene("MainMenuScreen");
+        }
     }
 
     void GameOver() 
