@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Prototype finish screen 
-        if (playerInventory.NumberOfTreasure == 2)
+        if (playerInventory.NumberOfTreasure == 1 && SceneManager.GetActiveScene().name == "Level2")
         {
             SceneManager.LoadScene("MainMenuScreen");
         }
