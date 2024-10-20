@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if (playerInventory.NumberOfTreasure == 1) {
+        if (playerInventory.NumberOfTreasure == 1 && SceneManager.GetActiveScene().name != "Level2") {
             SceneManager.LoadScene("Level2");
         }
 
         // Prototype finish screen 
-        if (playerInventory.NumberOfTreasure == 1 && SceneManager.GetActiveScene().name == "Level2")
+        if (playerInventory.NumberOfTreasure == 2)
         {
             SceneManager.LoadScene("MainMenuScreen");
         }

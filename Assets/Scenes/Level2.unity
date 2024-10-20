@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6625,7 +6625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84e9db3af8a4e541884e1f8c0ffe7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfTreasure: 0
+  NumberOfTreasure: 1
 --- !u!114 &1082593380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14435,7 +14435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focalPoint: {fileID: 1082593388}
   offset: {x: 0, y: 0, z: 0}
-  mouseSensitivity: 0.4
+  mouseSensitivity: 0.04
   pivot: {fileID: 163603743}
   maxViewAngle: 65
   minViewAngle: -50
@@ -14653,6 +14653,6 @@ SceneRoots:
   - {fileID: 542094780}
   - {fileID: 1813690102}
   - {fileID: 1680438163}
-  - {fileID: 1082593388}
   - {fileID: 927633849}
   - {fileID: 1932717102}
+  - {fileID: 1082593388}

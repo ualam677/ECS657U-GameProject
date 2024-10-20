@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3055,7 +3055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focalPoint: {fileID: 1141812079}
   offset: {x: 0, y: 0, z: 0}
-  mouseSensitivity: 0.4
+  mouseSensitivity: 0.04
   pivot: {fileID: 1489942463}
   maxViewAngle: 65
   minViewAngle: -50
@@ -3128,7 +3128,7 @@ Transform:
   m_GameObject: {fileID: 611918821}
   serializedVersion: 2
   m_LocalRotation: {x: 0.077140205, y: -0, z: -0, w: 0.9970203}
-  m_LocalPosition: {x: -1.8423948, y: 4.383686, z: -2.647367}
+  m_LocalPosition: {x: -1.8423948, y: 4.48, z: -3.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5924,10 +5924,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!143 &1141812074
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8605,7 +8605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1859386359}
-  maxHealth: 4
+  maxHealth: 5
   currentHealth: 0
   thePlayer: {fileID: 1141812075}
 --- !u!4 &1575479058
@@ -10817,6 +10817,6 @@ SceneRoots:
   - {fileID: 1958468929}
   - {fileID: 1503728730}
   - {fileID: 769655158}
-  - {fileID: 1141812079}
   - {fileID: 1561497720}
   - {fileID: 421561459}
+  - {fileID: 1141812079}

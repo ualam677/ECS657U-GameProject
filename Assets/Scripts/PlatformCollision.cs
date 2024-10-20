@@ -6,13 +6,18 @@ public class PlatformCollision : MonoBehaviour
 {
     private string playerTag = "Player";
     [SerializeField] Transform platform;
-    // Start is called before the first frame update
+
+    private bool playerEnters = false;
+    private bool playerExits = false;
+    private Collider obj;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals(playerTag))
         {
-            other.gameObject.transform.parent = platform;
+        //     other.gameObject.transform.parent = platform;
+            playerEnters = true;
+            obj = other;
             
         }
     }
@@ -21,7 +26,33 @@ public class PlatformCollision : MonoBehaviour
     {
         if (other.gameObject.tag.Equals(playerTag))
         {
-            other.gameObject.transform.parent = null;
+        //     other.gameObject.transform.parent = null;
+            playerExits = true;
+            obj = other;
+        }
+
+    }
+
+    // When player enters the platform make them move with it
+    void PlayerEnters() {
+        obj.gameObject.transform.parent = platform;
+        playerEnters = false;
+    }
+
+    // When player leaves platform make its transform seperate from the platform
+    void PlayerExits() {
+        obj.gameObject.transform.parent = null;
+        playerExits = false;
+    }
+
+
+    void LateUpdate() {
+        if (playerEnters) {
+            PlayerEnters();
+        }
+
+        if (playerExits) {
+            PlayerExits();
         }
     }
 }
