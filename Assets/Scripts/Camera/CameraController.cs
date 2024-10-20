@@ -14,7 +14,8 @@ public class CameraController : MonoBehaviour
     public float maxViewAngle;
     public float minViewAngle;
 
-    public Vector2 lookInput;
+    private Vector2 lookInput;
+    public PlayerController player;
 
 
     void OnLook(InputValue value)
@@ -26,6 +27,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         offset = focalPoint.position - transform.position;
+        player = FindAnyObjectByType<PlayerController>();
 
         // pivot used as intermediate object to rotate camera vertically instead of directly the player (prevent player from rotating verticaly)
         pivot.transform.position = focalPoint.transform.position;
@@ -71,5 +73,9 @@ public class CameraController : MonoBehaviour
 
         // repositioning the camera with the offset
         transform.LookAt(focalPoint);
+    }
+
+    void Update() {
+        lookInput = player.lookInput;
     }
 }
