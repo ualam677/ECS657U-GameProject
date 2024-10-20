@@ -13,6 +13,8 @@ public class CheckPoint : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
+
+    // Updates the respawn point of the player when they collide with a checkpoint
     private void OnTriggerEnter(Collider other)
     {
         if (checkPoints.Contains(other.gameObject))

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2815,7 +2815,7 @@ Transform:
   m_GameObject: {fileID: 472393914}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.77, y: -1.1, z: -50.3}
+  m_LocalPosition: {x: 10.44, y: -1.1, z: -43.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3205,7 +3205,7 @@ Transform:
   m_GameObject: {fileID: 482528075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.5, y: -12.29, z: 56.4}
+  m_LocalPosition: {x: 70.22, y: -12.29, z: 59.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6613,7 +6613,7 @@ Transform:
   m_GameObject: {fileID: 1082956979}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.49, y: 2, z: -5.95}
+  m_LocalPosition: {x: 5.91, y: 2, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9385,7 +9385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561497720}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: ENEMIES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11807,7 +11807,7 @@ Transform:
   m_GameObject: {fileID: 2047852913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.6, y: -6.8, z: -50.3}
+  m_LocalPosition: {x: 51.55, y: -6.8, z: -50.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

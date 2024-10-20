@@ -14,7 +14,6 @@ public class MovingPlatform : MonoBehaviour
 
     private Vector3 targetPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (pointA == null || pointB == null)

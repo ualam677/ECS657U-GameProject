@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+        // Transisitons to lvl2 once the treasure is obtained from lvl1
         if (playerInventory.NumberOfTreasure == 1 && SceneManager.GetActiveScene().name != "Level2") {
             SceneManager.LoadScene("Level2");
         }

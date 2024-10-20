@@ -15,12 +15,12 @@ public class GameRespawn : MonoBehaviour
         health = FindAnyObjectByType<HealthManager>();
     }
 
-    // Update is called once per frame
+    // Checks to see if player fell off the stage
     void FixedUpdate()
     {
         if (transform.position.y < threshold)
         {
-            Debug.Log("Player fell below threshold! Respawning at: " + respawnPoint);
+            // Debug.Log("Player fell below threshold! Respawning at: " + respawnPoint);
             transform.position = respawnPoint;
             health.damagePlayer(2, new Vector3(0f,0f,0f));
         }
@@ -29,6 +29,6 @@ public class GameRespawn : MonoBehaviour
     public void UpdateRespawnPoint(Vector3 newRespawnPoint)
     {
         respawnPoint = newRespawnPoint;
-        Debug.Log("Respawn point updated to: " + respawnPoint);
+        // Debug.Log("Respawn point updated to: " + respawnPoint);
     }
 }

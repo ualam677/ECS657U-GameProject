@@ -17,6 +17,7 @@ public class GhostPlatform : MonoBehaviour
         myAnim.SetFloat("DisappearTime", 1 / disappearTime);
     }
 
+    // on collision sets the platform to fade
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == playerTag)
@@ -25,6 +26,7 @@ public class GhostPlatform : MonoBehaviour
         }
     }
 
+    // restores the platform after dissapearing if set
     public void TriggerReset()
     {
         if (canReset)

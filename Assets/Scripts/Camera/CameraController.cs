@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
          float vertical = lookInput.y * mouseSensitivity;
         pivot.Rotate(-vertical, 0, 0);
 
-        // putting a limit on the pivot to prevent camera from flipping
+        // putting limits on the pivot to prevent camera from flipping
         if(pivot.rotation.eulerAngles.x > maxViewAngle && pivot.rotation.eulerAngles.x < 180f) {
             pivot.rotation = Quaternion.Euler(maxViewAngle, 0, 0);
         }
