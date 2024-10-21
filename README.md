@@ -1,5 +1,6 @@
 # ECS657U-GameProject
 
+- Aim of the game is to complete the level and obtian the super treasure to progress to the next one
 - Controls of the game include (inside game menu):
     - (WASD) for movement
     - Lshift for sprinting
